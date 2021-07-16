@@ -8,3 +8,5 @@ This repository holds a template UE4 project with a single empty actor that has 
 This is for the Win64 platform and can't verify how easily transfers to other platform.
 
 Most of the insights came from the Engine code - especially Pixel Inspector and IO Color Profile Extension. A hugh shout out to so many people asking and contributing with various small insights on the UE forum and Unreal Slackers Discord especially. For me just to get this actually working was a quest for several months, so this repository was made to hopefully easen the path for someone else. And also to gather feedback to further improve the implementation and best practices.
+
+NOTE ON THE ACTUAL UE4 PROJECT/FULL REPOSITORY: When hitting play the viewport blue and green components of the scenecolor are reversed as a proof of concept, otherwise it is just a vanilla empty c++ project template from the engine. Plugin folder should work as a copy/paste to any UE4.26> project.
