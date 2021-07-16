@@ -1,0 +1,26 @@
+// Test project fo SceneViewExtension / RDG Shader Basic setup
+// Copyright 2021 Ossi Luoto
+// 
+// Very basic Pixel Shader utilizing the Engine basics
+// We'll switch the colors just to test that the shader is working
+
+#include "/Engine/Public/Platform.ush"
+
+Texture2D InputTexture;
+SamplerState InputSampler;
+
+void MainPS(
+float4 InPosition : SV_POSITION,
+	float2 InUV : TEXCOORD0,
+	out float4 OutColor : SV_Target0)
+{
+    float4 InputColor = InputTexture.Sample(InputSampler, InUV.xy);
+    InputColor = max(0.0, InputColor);
+    InputColor = pow(InputColor, 1.0);
+    OutColor = float4(InputColor.x, InputColor.z, InputColor.y, InputColor.w);
+}
+
+
+
+
+
