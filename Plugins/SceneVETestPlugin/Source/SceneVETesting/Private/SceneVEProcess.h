@@ -69,6 +69,39 @@ public:
 
 };
 
+// Struct to include common parameters, useful when doing multiple shaders
+BEGIN_SHADER_PARAMETER_STRUCT(FCommonShaderParameters, )
+	SHADER_PARAMETER_STRUCT_REF(FViewUniformShaderParameters, ViewUniformBuffer)
+END_SHADER_PARAMETER_STRUCT()
+
+
+class SCENEVETESTING_API FSceneVETestShaderCS : public FGlobalShader
+{
+public:
+	DECLARE_GLOBAL_SHADER(FSceneVETestShaderCS)
+	SHADER_USE_PARAMETER_STRUCT(FSceneVETestShaderCS, FGlobalShader)
+
+	BEGIN_SHADER_PARAMETER_STRUCT(FParameters, )
+		SHADER_PARAMETER_STRUCT_INCLUDE(FCommonShaderParameters, CommonParameters)
+		SHADER_PARAMETER(FIntRect, ViewportRect)
+#if ENGINE_MAJOR_VERSION == 5
+		SHADER_PARAMETER(FVector2f, SceneColorBufferInvSize)
+#else
+		SHADER_PARAMETER(FVector2D, SceneColorBufferInvSize)
+#endif
+		SHADER_PARAMETER_RDG_TEXTURE(Texture2D, OriginalSceneColor)
+		SHADER_PARAMETER_RDG_TEXTURE_UAV(RWTexture2D<float4>, Output)
+	END_SHADER_PARAMETER_STRUCT()
+
+	// Basic shader stuff
+		static bool ShouldCompilePermutation(const FGlobalShaderPermutationParameters& Parameters)
+	{
+		return IsFeatureLevelSupported(Parameters.Platform, ERHIFeatureLevel::SM5);
+	}
+
+};
+
+
 class FSceneVEProcess
 {
 public:
