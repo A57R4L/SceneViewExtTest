@@ -1,3 +1,7 @@
+### Update for Unreal Engine 5
+
+Please find an up-to-date plugin repository here: [https://github.com/A57R4L/SceneViewExtensionTemplate](https://github.com/A57R4L/SceneViewExtensionTemplate)
+
 # SceneViewExtTest
  UE 4.26 (works now on 4.27 and 5.0.1) test project and plugin for SceneViewExtension and how to hook custom shaders (Vertex Shader, Pixel Shader and Compute Shader) to RDG/GraphBuilder
 
